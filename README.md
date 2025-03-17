@@ -4,6 +4,8 @@ Recreation of Conway's Game of Life in python.
 
 Using: python 3.12.3, pygame-ce 2.5.3, numpy 2.2.3, pyinstaller 6.12.0
 
+![example picture](https://raw.githubusercontent.com/xhomar/game-of-life/refs/heads/main/assets/readmepicture.png)
+
 ## Controls
 
 Mouse 1 / Mouse 2 - Place / Remove cells
