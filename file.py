@@ -3,7 +3,7 @@ def check_files():
         open("config/config.txt", "x")
         file = open("config/config.txt", "w")
         # width, height, array width, array height, framerate, array swap
-        file.write("1280\n720\n64\n32\n10\nTrue")
+        file.write("1280\n720\n128\n72\n10\n1")
     except FileExistsError:
         pass
 

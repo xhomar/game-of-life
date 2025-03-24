@@ -1,19 +1,20 @@
-import numpy as np
+from numpy import array
+from random import choice
 import file
 
 
 class GameOfLife:
     def __init__(self):
-        self.array = np.array([])
-        self.array_copy = np.array([])
-        self.array_check = np.array([])
+        self.array = array([])
+        self.array_copy = array([])
+        self.array_check = array([])
         self.array_swap = True
         self.array_width, self.array_height = (0, 0)
 
     def create_array(self, width, height):
-        self.array = np.array([[False for _ in range(0, width)] for _ in range(0, height)])
-        self.array_copy = np.array([[False for _ in range(0, width)] for _ in range(0, height)])
-        self.array_check = np.array([[0 for _ in range(0, width)] for _ in range(0, height)])
+        self.array = array([[False for _ in range(0, width)] for _ in range(0, height)])
+        self.array_copy = array([[False for _ in range(0, width)] for _ in range(0, height)])
+        self.array_check = array([[0 for _ in range(0, width)] for _ in range(0, height)])
         self.array_width, self.array_height = (len(self.array[0]), len(self.array))
 
     def swap_array(self, position, button):
@@ -56,8 +57,13 @@ class GameOfLife:
             for j in range(0, self.array_width):
                 self.array[i][j] = False
 
+    def random_array(self):
+        for i in range(0, self.array_height):
+            for j in range(0, self.array_width):
+                self.array[i][j] = choice([True, False])
+
     def calculate_array(self):
-        self.array_check = np.array([[0 for _ in range(0, self.array_width)] for _ in range(0, self.array_height)])
+        self.array_check = array([[0 for _ in range(0, self.array_width)] for _ in range(0, self.array_height)])
 
         for i in range(0, self.array_height):
             for j in range(0, self.array_width):
@@ -65,17 +71,31 @@ class GameOfLife:
                     continue
                 for i2 in range(-1, 2):
                     for j2 in range(-1, 2):
+                        i3 = j3 = 0
+
+                        # If checks itself
                         if i2 == 0 and j2 == 0:
                             continue
-                        if i + i2 < 0 or i + i2 > self.array_height or j + j2 < 0 or j + j2 > self.array_width:
-                            continue
-                        try:
-                            if self.array[i + i2][j + j2]:
-                                self.array_check[i][j] += 1
-                            else:
-                                self.array_check[i + i2][j + j2] += 1
-                        except IndexError:
-                            continue
+
+                        # If out of range
+                        if i + i2 < 0:
+                            i3 = self.array_height
+
+                        if i + i2 > self.array_height - 1:
+                            i3 = -self.array_height
+
+                        if j + j2 < 0:
+                            j3 = self.array_width
+
+                        if j + j2 > self.array_width - 1:
+                            j3 = -self.array_width
+
+                        # If in range and cell is present
+                        if self.array[i + i2 + i3][j + j2 + j3]:
+                            self.array_check[i][j] += 1
+                        else:
+                            self.array_check[i + i2 + i3][j + j2 + j3] += 1
+
 
         for i in range(0, self.array_height):
             for j in range(0, self.array_width):

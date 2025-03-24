@@ -14,7 +14,9 @@ Ctrl + C, Ctrl + S - Save current state to external file
 
 Ctrl + V - Load saved state from external file
 
-Ctrl + R - Load empty state
+Ctrl + E - Load empty state
+
+Ctrl + R - Load randomized state
 
 ## Config file
 

@@ -43,15 +43,16 @@ while True:
             # copy/paste
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RCTRL] or keys[pygame.K_LCTRL]:
-                if (keys[pygame.K_v] or keys[pygame.K_r]) and (keys[pygame.K_c] or keys[pygame.K_s]):
-                    continue
                 if keys[pygame.K_c] or keys[pygame.K_s]:
                     gameoflife.copy_array()
                 if keys[pygame.K_v]:
                     gameoflife.paste_array()
                     display.render_array()
-                if keys[pygame.K_r]:
+                if keys[pygame.K_e]:
                     gameoflife.empty_array()
+                    display.render_array()
+                if keys[pygame.K_r]:
+                    gameoflife.random_array()
                     display.render_array()
     if pygame.display.get_window_size() != (display.window_width, display.window_height):
         display.calculate_array()
