@@ -20,7 +20,6 @@ class Display:
 
         # renders
         self.ALIVE_CELL = pygame.image.load('assets/alive.jpg').convert()
-        self.DEAD_CELL = pygame.image.load('assets/dead.jpg').convert()
 
     def render_array(self):
         self.ARRAY_DISPLAY.fill((0, 0, 0))
